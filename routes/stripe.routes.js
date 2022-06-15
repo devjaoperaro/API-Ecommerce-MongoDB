@@ -1,5 +1,5 @@
 const stripeRouter = require('express').Router();
-const stripe = require('stripe')('sk_test_51L1VFJKuJkvv8RTRGo6xs6c3nj9PcwID2o9sHB0bX5SfqLTdMTg1U8Dglp9zwQUfai28YBg3JiSu52KeiSRkNUwX00jB0XzbrZ');
+const stripe = require('stripe')('sk_test_51L1VFJKuJkvv8RTRHbdR9lFzSPaDfHZNl6vf0ZUBtqNR7LSoy966JRyH43OaMEIFHWKzczjzAJLFmvzDcup6LpmD00NFUCTX2Z');
 
 // stripeRouter.post('/payment', (req, res) => {
 //     stripe.charges.create({
