@@ -27,10 +27,9 @@ stripeRouter.post('/create-checkout-session', async (req, res) => {
             quantity: req.body.items[0].quantity,
         },
         ],
-        success_url: `${YOUR_DOMAIN}/pay`,
+        success_url: `${YOUR_DOMAIN}/success`,
         cancel_url: `${YOUR_DOMAIN}/`,
     });
-    // console.log(line_items[0].price);
     res.json({ url: session.url });
     // try {
     // } catch (error) {
