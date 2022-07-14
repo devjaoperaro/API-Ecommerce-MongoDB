@@ -66,22 +66,22 @@ userRouter.get('/find', verifyTokenAdmin, async (req, res) => {
 userRouter.get('/stats', verifyTokenAdmin, async (req, res) => {
     const date = new Date();
     const lastYear = new Date(date.setFullYear(date.getFullYear() -1))
-    console.log(lastYear);
 
     try {
         const data = await User.aggregate([
-            //Filtra os dados do ultimo ano, primeiro estagio do pipeline
+            //Filtra os dados do ultimo ano, primeiro estagio do pipeline/ match faz a condição onde o valor de createdAt seja maior que o valor de lastYear
             { $match: { createdAt: { $gte: lastYear } } },
             {
-                //pega o valordo campo, no caso o mes
+                //pega o valor do campo, no caso o mes/ project é para setar o valor
                 $project: {
+                    // $month retorna o mes de uma data
                     month: { $month: "$createdAt" },
                 },
             },
             {
-                //mostra a quantidade de usuarios por mes
+                //mostra a quantidade de usuarios por mes/ group é a saida do pipeline
                 $group: {
-                    _id: { month: "$month" },
+                    _id: { month: "$month" },   
                     total: { $sum: 1 },
                 },
             }
