@@ -57,7 +57,7 @@ productRouter.get('/find/:id', async (req, res) => {
 productRouter.get('/find', async (req, res) => {
     
     //criar query de parametro ex: ?new=true
-    //buscar os 5 ultimos produtos
+    //buscar os 5 ultimos produtos mais novos
     const queryNewProducts = req.query.new
 
     //criar query de parametro ex: ?category=man
