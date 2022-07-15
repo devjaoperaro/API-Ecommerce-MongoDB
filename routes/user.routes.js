@@ -69,6 +69,7 @@ userRouter.get('/stats', verifyTokenAdmin, async (req, res) => {
 
     try {
         const data = await User.aggregate([
+            
             //Filtra os dados do ultimo ano, primeiro estagio do pipeline/ match faz a condição onde o valor de createdAt seja maior que o valor de lastYear
             { $match: { createdAt: { $gte: lastYear } } },
             {
@@ -81,10 +82,12 @@ userRouter.get('/stats', verifyTokenAdmin, async (req, res) => {
             {
                 //mostra a quantidade de usuarios por mes/ group é a saida do pipeline
                 $group: {
-                    _id: { month: "$month" },   
+                    // order numeric month
+                    _id:  "$month", 
                     total: { $sum: 1 },
                 },
-            }
+            },
+            {$sort: {_id: 1}}
         ])
 
         // desestrutura e paga as info

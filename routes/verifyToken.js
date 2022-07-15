@@ -23,6 +23,7 @@ const verifyToken = (req, res, next) => {
 
 // verifica se o usuario pode acessar a rota por estar autenticado
 const verifyTokenAuthorization = (req, res, next) => {
+    // verfica token valido. Só executa esse middleware
     verifyToken(req, res, () => {
         if (req.user.id === req.params.id) {
             next();
