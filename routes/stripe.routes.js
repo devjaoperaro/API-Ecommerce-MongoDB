@@ -38,24 +38,22 @@ const YOUR_DOMAIN = 'http://localhost:3000';
 stripeRouter.post("/create-checkout-session", async (req, res) => {
     try {
       // Create a checkout session with Stripe
-      console.log(req.body.descriProd.image[0]);
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
         // For each item use the id to get it's information
         // Take that information and convert it to Stripe's format
-        line_items: req.body.items.map(({ id, quantity }) => {
-        //   const storeItem = storeItems.get(id)
+        line_items: req.body.items.map(({ id, quantity }, index) => {
           return {
             price_data: {
               currency: "brl",
               product_data: {
-                name: req.body.descriProd.name[0],
-                description: req.body.descriProd.description[0],
+                name: req.body.descriProd.name[index],
+                description: req.body.descriProd.description[index],
                 images: [
-                    req.body.descriProd.image[0],
+                    req.body.descriProd.image[index],
                 ]
               },
-              unit_amount: req.body.descriProd.price[0],
+              unit_amount: req.body.descriProd.price[index],
             },
             quantity: quantity,
           } 
