@@ -3,6 +3,7 @@ const {verifyToken, verifyTokenAuthorization, verifyTokenAdmin} = require('./ver
 const Order = require('../models/Order');
 
 // add no pedido
+
 orderRouter.post('/', verifyToken, async (req, res) => {
     const newOrder = new Order(req.body);
 

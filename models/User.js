@@ -9,7 +9,8 @@ const userSchema = new mongoose.Schema(
             type: Boolean,
             default: false,
         },
-        img: {type: String}
+        img: {type: String},
+        resetPasswordToken: {type: String},
     },
     {timestamps: true}
 );

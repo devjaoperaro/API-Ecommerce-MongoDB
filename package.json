@@ -15,5 +15,8 @@
     "moongose": "^1.0.0",
     "nodemon": "^2.0.16",
     "stripe": "^9.2.0"
+  },
+  "devDependencies": {
+    "@sendgrid/mail": "^7.7.0"
   }
 }
